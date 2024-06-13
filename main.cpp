@@ -1,38 +1,24 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <stdlib>
 #include "tensorflow/lite/interpreter.h"
 #include "tensorflow/lite/kernels/register.h"
 #include "tensorflow/lite/model.h"
 #include "tensorflow/lite/stderr_reporter.h"
 
-// Function to read the model file into a buffer
-std::vector<char> read_model(const std::string& model_path) {
-    std::ifstream file(model_path, std::ios::binary | std::ios::ate);
-    std::streamsize size = file.tellg();
-    file.seekg(0, std::ios::beg);
-    std::vector<char> buffer(size);
-    if (file.read(buffer.data(), size)) {
-        return buffer;
-    }
-    throw std::runtime_error("Failed to read model file");
-}
-
 int main() {
-    const std::string model_path = "path/to/your/model.tflite";
+    const string model_path = "./model.tflite";
 
-    // Read the model
-    std::vector<char> model_buffer = read_model(model_path);
-
-    // Initialize TensorFlow Lite interpreter
-    tflite::ops::builtin::BuiltinOpResolver resolver;
-    tflite::StderrReporter error_reporter;
-    std::unique_ptr<tflite::FlatBufferModel> model = tflite::FlatBufferModel::BuildFromBuffer(model_buffer.data(), model_buffer.size(), &error_reporter);
+    // Load the model
+    std::unique_ptr<tflite::FlatBufferModel> model =
+    tflite::FlatBufferModel::BuildFromFile(model_path);
     if (!model) {
-        std::cerr << "Failed to load model" << std::endl;
+        cerr << "Failed to load model" << std::endl;
         return 1;
     }
 
+    // Build the interpreter
+    tflite::ops::builtin::BuiltinOpResolver resolver;
     std::unique_ptr<tflite::Interpreter> interpreter;
     if (tflite::InterpreterBuilder(*model, resolver)(&interpreter) != kTfLiteOk) {
         std::cerr << "Failed to build interpreter" << std::endl;

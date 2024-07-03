@@ -1,0 +1,13 @@
+C:\Users\harsh\mnist_digit_classification\cmake-build-debug-visual-studio\Debug\main.exe
+hi
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+ERROR: Select TensorFlow op(s), included in the given model, is(are) not supported by this interpreter. Make sure you ap
+ply/link the Flex delegate before inference. For the Android, it can be resolved by adding "org.tensorflow:tensorflow-li
+te-select-tf-ops" dependency. See instructions: https://www.tensorflow.org/lite/guide/ops_select
+ERROR: Node number 76 (FlexSparseSoftmaxCrossEntropyWithLogits) failed to prepare.
+ERROR: Select TensorFlow op(s), included in the given model, is(are) not supported by this interpreter. Make sure you ap
+ply/link the Flex delegate before inference. For the Android, it can be resolved by adding "org.tensorflow:tensorflow-li
+te-select-tf-ops" dependency. See instructions: https://www.tensorflow.org/lite/guide/ops_select
+ERROR: Node number 76 (FlexSparseSoftmaxCrossEntropyWithLogits) failed to prepare.
+
+Process finished with exit code -1073741819 (0xC0000005)

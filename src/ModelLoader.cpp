@@ -1,6 +1,7 @@
 #include "ModelLoader.h"
 #include "tensorflow/lite/interpreter.h"
 #include "tensorflow/lite/kernels/register.h"
+#include "tensorflow/lite/delegates/flex/delegate.h"
 
 ModelLoader::ModelLoader(const std::string& model_path) {
     loadModel(model_path);

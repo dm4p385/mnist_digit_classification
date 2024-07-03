@@ -22,14 +22,18 @@ set(SOURCES
 
 # Find TensorFlow Lite library (assuming tensorflowlite.dll is in TFLITE_LIBRARY_DIR)
 find_library(TFLITE tensorflowlite.dll.if HINTS ${LIBRARY_DIR})
+find_library(TFLITE_FLEX tensorflowlite_flex.dll.if HINTS ${LIBRARY_DIR})
 find_library(FLATBUFFERS flatbuffers HINTS ${LIBRARY_DIR})
 
 add_executable(main ${SOURCES})
 add_compile_definitions(DATA_DIR="${DATA_DIR}")
 # Link against the TensorFlow Lite library
-target_link_libraries(main PRIVATE ${TFLITE} ${FLATBUFFERS})
+
+target_link_libraries(main PRIVATE ${TFLITE_FLEX} ${TFLITE} ${FLATBUFFERS})
 
 add_custom_command(
         TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different "${LIBRARY_DIR}tensorflowlite.dll" "${CMAKE_BINARY_DIR}/Debug/"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${LIBRARY_DIR}tensorflowlite_flex.dll" "${CMAKE_BINARY_DIR}/Debug/"
+#        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${LIBRARY_DIR}flatbuffers.dll" "${CMAKE_BINARY_DIR}/Debug/"
 )

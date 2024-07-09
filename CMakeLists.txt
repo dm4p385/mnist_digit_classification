@@ -21,8 +21,8 @@ set(SOURCES
 )
 
 # Find TensorFlow Lite library (assuming tensorflowlite.dll is in TFLITE_LIBRARY_DIR)
-find_library(TFLITE libtensorflowlite HINTS ${LIBRARY_DIR})
-find_library(TFLITE_FLEX libtensorflowlite_flex HINTS ${LIBRARY_DIR})
+find_library(TFLITE libtensorflowlite.so HINTS ${LIBRARY_DIR})
+find_library(TFLITE_FLEX libtensorflowlite_flex.so HINTS ${LIBRARY_DIR})
 # find_library(FLATBUFFERS flatbuffers HINTS ${LIBRARY_DIR})
 
 add_executable(main ${SOURCES})

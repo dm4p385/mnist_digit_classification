@@ -12,6 +12,7 @@ set(LIBRARY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party/tensorflow/lib/")
 
 # Include TensorFlow Lite headers
 include_directories(${INCLUDE_DIR})
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/third_party/tensorflow/include/bazel-bin/tensorflow/")
 #include_directories(${FLATBUFFERS_INCLUDE_DIR})
 
 set(SOURCES
